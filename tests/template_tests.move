@@ -4,14 +4,14 @@ module template::template_tests;
 #[test]
 fun test_template() {
     use sui::test_scenario;
-    use template::template::{init, make_game_challenge, next, PlayerCap, Game};
+    use template::template::{Self, make_game_challenge, next, PlayerCap, Game};
 
     let first_player: address = @0x0001;
     let second_player: address = @0x0002;
 
     let mut scenario = test_scenario::begin(@0xAAAA);
     {
-        init(scenario.ctx());
+        template::init_for_testing(scenario.ctx());
     };
 
     scenario.next_tx(second_player);
